@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Trigger.MultiTrigger">
+    <ContentPage.Content>
+        <StackLayout Padding="14">
+            <Entry x:Name="user" Text="" Placeholder="user name" />
+
+            <Entry x:Name="pwd" Text="" Placeholder="password" />
+
+            <Button x:Name="loginButton" Text="Login" FontSize="Large" HorizontalOptions="Center">
+                <Button.Triggers>
+                    <MultiTrigger TargetType="Button">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding Source={x:Reference user},
+                                   Path=Text.Length}" Value="0" />
+                            <BindingCondition Binding="{Binding Source={x:Reference pwd},
+                                   Path=Text.Length}" Value="0" />
+                        </MultiTrigger.Conditions>
+
+                        <Setter Property="IsEnabled" Value="False" />
+                        <!-- multiple Setter elements are allowed -->
+                    </MultiTrigger>
+                </Button.Triggers>
+            </Button>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
